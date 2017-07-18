@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  </head>
+  <body>
+    
+    <div ng-controller="controlador01">
+     {{nome}} {{sobrenome}} {{idade}} {{cidade}} {{estado}} {{pais}}
+    </div>
+    
+    <div ng-controller="controlador02">
+     {{nome}} {{sobrenome}} {{idade}} {{cidade}} {{estado}} {{pais}}
+    </div>
+  
+    <script>
+        var controlador01 = function ($scope) {
+    
+          $scope.nome = "Maria";
+          $scope.sobrenome = "Silva";
+          $scope.idade = "31";
+          $scope.cidade = "Recife";
+          $scope.estado = "Pernambuco";
+          $scope.pais = "Brasil";
+    
+    
+        };
+        
+        var controlador02 = function ($scope) {
+    
+          $scope.nome = "Joao";
+          $scope.sobrenome = "Silva";
+          $scope.idade = "30";
+          $scope.cidade = "Recife";
+          $scope.estado = "Pernambuco";
+          $scope.pais = "Brasil";
+    
+        };
+  
+    
+    </script>
+  </body>
+</html>
