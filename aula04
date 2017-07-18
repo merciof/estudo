@@ -1,0 +1,21 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  </head>
+  <body>
+    
+  <input type="checkbox" ng-model="modeloDados01" > ng-hide.
+  
+  <input type="checkbox" ng-model="modeloDados02" > eng-show.
+  
+  <div ng-hide="modeloDados01">
+    teste01
+  </div>
+  <hr>
+  <div ng-show="modeloDados02">
+    teste02
+  </div>
+  
+  </body>
+</html>
