@@ -20,8 +20,7 @@
     
     <!-- Visualização dos modelos  -->
     <h1>Olá {{modelo01}}  {{modelo02}}</h1>
-  
-  
+   
   </body>
 
 </html>
