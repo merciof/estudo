@@ -36,7 +36,7 @@
           $scope.cidade = "Recife";
           $scope.estado = "Pernambuco";
           $scope.pais = "Brasil";
-    
+   
         };
   
     
