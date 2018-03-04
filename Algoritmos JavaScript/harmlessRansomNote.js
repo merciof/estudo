@@ -5,23 +5,28 @@ function harmlessRansomNote(noteText, magazineText) {
     let noteArr = noteText.split(' ');
     let magazineArr = magazineText.split(' ');
     let magazineObj = {}; //hash table
-
+    let noteIsPossible = true;
+    
     magazineArr.forEach(function(palavra){
-        //caso a palavra nao esteja contida no objeto
+        //caso não exista um atributo no abjeto com o nome da palavra
         if (!magazineObj[palavra]) {
-            //a propriedade referente a quantidade de ocorrencias
-            //da palavra no texto recebe 0
+            //o atributo referente a quantidade de ocorrencias
+            //da palavra no texto é definido e recebe 0
             magazineObj[palavra] = 0;            
         }
-        //a propriedade referente a quantidade de ocorrencias
+        //o atributo referente a quantidade de ocorrencias
         //da palavra no texto recebe + 1
         magazineObj[palavra] = magazineObj[palavra] + 1;
     });
 
-    let noteIsPossible = true;
+    //loop que verifica se é possivel a construçao da nota
+    //são subtratidas as palavras correspondentes dos atributos 
+    //do objeto
     noteArr.forEach(function(palavra){
         if(magazineObj[palavra]) {
             magazineObj[palavra]--;
+            //caso o atributo esteja associado a um valor menor do que zero
+            //a construção da nota não é possível
             if(magazineObj[palavra] < 0) {
                 noteIsPossible = false;
             }
@@ -30,6 +35,7 @@ function harmlessRansomNote(noteText, magazineText) {
         }
         
     });
+    return noteIsPossible;
 };
 
 let noteText = 'this is a secret note for you from a secret admirer';
