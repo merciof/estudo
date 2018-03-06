@@ -36,5 +36,3 @@ function caesarCipher(str, num) {
     }
     return newString;
 }
-
-console.log('teste');
