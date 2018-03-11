@@ -20,39 +20,28 @@ function partition(array, left, right) {
     let j = right;//start right and go towards pivor
 
 
-    while(i <= j) {
-        
-        console.log(array[i] + '<' + pivot);
+    while(i <= j) { 
        //Enquanto o elemento a esquerda do pivot for menor do que o pivot, avance um elemento a direita
         while(array[i] < pivot) {
-            console.log(`Indice i indo do elemento: ${array[i]} para o elemento ${array[i + 1]} `);
+            
             
             i++;
         } 
-        console.log('**************************************************************');
-        console.log('\n');
-        
-        //Enquanto o elemento a direita do pivot for maior do que o pivot, avance um elemento a esquerda
-        console.log(array[j] + '>' + pivot);
-        while(array[j] > pivot){
-            console.log(`Indice j voltando do elemento: ${array[j]} para o elemento ${array[j - 1]} `);
+     
+        //Enquanto o elemento a direita do pivot for maior do que o pivot, avance um elemento a esquerda  
+        while(array[j] > pivot){           
             j--;
         }
-        console.log('\n');
         if (i <= j) {
             //swap values using destructuring
-            console.log('**************************************************************');
-            console.log(`Trocando elemento ${array[i]} por ${array[j]} `);
-            
             [array[i], array[j]] = [array[j], array[i]];
             i++;
             j--;
-        }
-        console.log('\n');
+        }      
     }
     return i;
 }
 
 
-let array = [3,8,15,6,9,2,1,12];
+let array = [3,5,1,6,4,7,2];
 console.log(quickSort(array));
