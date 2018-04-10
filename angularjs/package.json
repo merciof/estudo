@@ -1,0 +1,17 @@
+{
+  "name": "angularjs",
+  "version": "1.0.0",
+  "description": "Exercicio de tutorial sobre angularjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "angularjs"
+  ],
+  "author": "merciof",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}
