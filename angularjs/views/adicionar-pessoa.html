@@ -1,4 +1,11 @@
-<input type="text" placeholder="Nome"><br><br>
-<input type="text" placeholder="Cidade"><br><br>
+<input type="text" placeholder="Nome" ng-model="pessoa.nome">
+<br>
+<br>
+<input type="text" placeholder="Cidade" ng-model="pessoa.cidade">
+<br>
+<br>
 <button class="btn" ng-click="adicionar()">Adicionar</button>
 <a href="#">Voltar</a>
+<ul>
+    <li ng-repeat="p in pessoas">{{p.nome}}, {{p.cidade}}</li>
+</ul>

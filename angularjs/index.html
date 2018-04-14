@@ -1,31 +1,88 @@
 <!DOCTYPE html>
-<html ng-app="pessoas">
+<html ng-app="minmax">
 
 <head>
     <!-- Required meta tags for Bootstrap-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
         crossorigin="anonymous">
-
-    <title>Rotas</title>
+    <link href="style.css" rel="stylesheet">
+    <title>Form Submission</title>
 </head>
 
 <body>
-    <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Form Submitting
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content" ng-controller="MinMaxCtrl">
+
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" ng-model="formModel.name" id="name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" ng-model="formModel.email" id="email">
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" ng-model="formModel.username" id="username">
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" ng-model="formModel.age" id="age">
+            </div>
+
+            <div class="form-group">
+                <label for="sex">Sex</label>
+                <select name="sex" id="sex" class="form-control" ng-model="formModel.sex">
+                    <option value="">Please Choose</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" ng-model="formModel.password" id="password">
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="onSubmit()">Register
+                </button>
+            </div>
+
+        </form>
+
+        <pre>{{ formModel | json }}</pre>
+
+    </div>
+
+    <!-- <div class="container">
         <div class="row">
             <div class="col-12">
                 <h1>Sistema de Gerenciamento de Pessoas</h1>
                 <div ng-view></div>
             </div>
         </div>
-    </div>
-
-
-    <script data-require="angular.js@1.0.8" data-semver="1.0.8" src="https://code.angularjs.org/1.0.8/angular.js"></script>
-    <script src="modulos/pessoas.js"></script>
+    </div> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="modulos/form.js"></script>
 </body>
 
 </html>
