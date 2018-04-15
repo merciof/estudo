@@ -23,6 +23,7 @@ angular.module('firebaseAppApp')
 
       var rootRef = firebase.database().ref();
       var childRef = rootRef.child('message');
+      
       $scope.setMessage = function() {
         childRef.set({
           user: 'Mércio',
@@ -31,4 +32,13 @@ angular.module('firebaseAppApp')
         console.log('função executada');
         
       };
+
+      $scope.updateMessage = function(){
+        childRef.update({text: 'Bye'});
+        console.log('função executada');
+      }
+
+      $scope.deleteMessage = function() {
+        childRef.remove();
+      }
   });

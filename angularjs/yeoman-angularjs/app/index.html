@@ -21,7 +21,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header" ng-controller="MainCtrl">
+    <div class="header">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -44,9 +44,15 @@
               <li><a ng-href="#/">Contact</a></li>
             </ul>
           </div>
-          <div class="row marketing">
+          <div class="row marketing" ng-controller="MainCtrl">
             <button class="btn btn-success" type="button" ng-click="setMessage()">
               Set Message
+            </button>
+            <button class="btn btn-warning" type="button" ng-click="updateMessage()">
+              Update Message
+            </button>
+            <button class="btn btn-danger" type="button" ng-click="deleteMessage()">
+              Delete Message
             </button>
           </div>
         </div>
