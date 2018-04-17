@@ -44,7 +44,11 @@
               <li><a ng-href="#/">Contact</a></li>
             </ul>
           </div>
+          
+          
+          
           <div class="row marketing" ng-controller="MainCtrl">
+            <input type="text" class="form-control" ng-model="message.text"/>
             <button class="btn btn-success" type="button" ng-click="setMessage()">
               Set Message
             </button>
