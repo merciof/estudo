@@ -26,20 +26,25 @@ angular.module('firebaseAppApp')
 
     $scope.currentUser = null;
     $scope.currentText = null;
+    $scope.messages = [];
 
     /** on() function: Listens for data changes at a particular location.
         This is the primary way to read data from a Database. 
         Your callback will be triggered for the initial data and again whenever the data changes.*/
-    messagesRef.on('value'/*'value' is a type of event*/, function (snapshot) {
+        /*'value' is a type of event*/
+
+    /*child_added*/
+    /*traz todos os filhos de 'messages' no snapshot*/    
+    messagesRef.on('child_added', function (snapshot) {
       $timeout(function () {
         var snapshotVal = snapshot.val();
         console.log(snapshotVal);
-        $scope.messages = snapshotVal;
+        $scope.messages.push(snapshotVal);
       });
     });
 
     $scope.sendMessage = function () {
-      alert('função executada');
+      
       var newMessage = {
         user: $scope.currentUser,
         text: $scope.currentText
