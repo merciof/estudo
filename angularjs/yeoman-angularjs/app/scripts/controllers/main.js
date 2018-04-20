@@ -38,10 +38,34 @@ angular.module('firebaseAppApp')
     messagesRef.on('child_added', function (snapshot) {
       $timeout(function () {
         var snapshotVal = snapshot.val();
-        console.log(snapshotVal);
-        $scope.messages.push(snapshotVal);
+        //console.log(snapshotVal);
+        $scope.messages.push({
+          user: snapshotVal.user,
+          text: snapshotVal.text,
+          key: snapshot.key
+        });
       });
     });
+
+    messagesRef.on('child_changed', function (snapshot) {
+      $timeout(function () {
+        var message = findMessageByKey(snapshot.key);
+        console.log(message);
+        
+      });
+    });
+
+    function findMessageByKey(key) {
+      var messageFound = null;
+      for (let i = 0; i < $scope.messages.length; i++) {
+        var currentMessage = $scope.messages[i];
+        if(currentMessage.key === key) {
+          messageFound = currentMessage;
+          break;
+        }
+      }
+      return messageFound;
+    }
 
     $scope.sendMessage = function () {
       
