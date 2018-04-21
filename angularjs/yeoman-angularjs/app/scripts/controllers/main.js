@@ -50,10 +50,27 @@ angular.module('firebaseAppApp')
     messagesRef.on('child_changed', function (snapshot) {
       $timeout(function () {
         var message = findMessageByKey(snapshot.key);
-        console.log(message);
-        
+        var snapshotVal = snapshot.val();
+        message.text = snapshotVal.text;
       });
     });
+
+    messagesRef.on('child_removed', function (snapshot) {
+      $timeout(function () {
+        deleteMessageByKey(snapshot.key);
+      });
+    });
+
+    function deleteMessageByKey(key) {
+      for (let i = 0; i < $scope.messages.length; i++) {
+        var currentMessage = $scope.messages[i];
+        if(currentMessage.key === key) {
+          delete $scope.messages[i];
+          break;
+        }
+      }
+    }
+
 
     function findMessageByKey(key) {
       var messageFound = null;
