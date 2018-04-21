@@ -23,10 +23,13 @@ angular.module('firebaseAppApp')
 
     var rootRef = firebase.database().ref();
     var messagesRef = rootRef.child('messages');
-
+    var titleRef = rootRef.child('title');
+    
     $scope.currentUser = null;
     $scope.currentText = null;
     $scope.messages = [];
+    $scope.title = null;
+
 
     /** on() function: Listens for data changes at a particular location.
         This is the primary way to read data from a Database. 
@@ -61,6 +64,16 @@ angular.module('firebaseAppApp')
       });
     });
 
+      // recupera o dado da base apenas uma vez, independente se haja ou não alterações
+      titleRef.once('value', function(snapshot) {
+        $scope.title = snapshot.val();
+      })
+
+     $scope.turnFeedOff =  function() {
+      messagesRef.off();
+      //turn off single browser connection
+    };
+
     function deleteMessageByKey(key) {
       for (let i = 0; i < $scope.messages.length; i++) {
         var currentMessage = $scope.messages[i];
@@ -70,7 +83,6 @@ angular.module('firebaseAppApp')
         }
       }
     }
-
 
     function findMessageByKey(key) {
       var messageFound = null;

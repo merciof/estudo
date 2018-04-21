@@ -53,12 +53,20 @@
           </ul>
         </div>
 
+        
+
         <div ng-controller="MainCtrl">
+          <h2>{{title}}</h2>
           <div class="jumbotron">
             <div ng-repeat="message in messages">
                 <h4>{{message.user + ':'}}  {{message.text}}</h4>               
+                <!-- O ':' continua sendo renderizado após a axclusão de message do escopo -->
             </div>
           </div>
+
+          <button type="button" class="btn btn-danger" ng-click="turnFeedOff()">
+            Desligar feed
+          </button>
   
           <div class="row marketing">
             <input type="text" class="form-control" ng-model="currentUser">
