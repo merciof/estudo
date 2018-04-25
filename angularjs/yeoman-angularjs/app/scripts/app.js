@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name firebaseAppApp
+ * @name firebaseApp
  * @description
  * # firebaseAppApp
  *
  * Main module of the application.
  */
 angular
-  .module('firebaseAppApp', [
+  .module('firebaseApp', [
     'ngCookies',
     'ngResource',
     'ngRoute',
@@ -30,4 +30,8 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }).constant("config",{
+    apiKey: "AIzaSyD_RJeXxSxpw7LXZ5RWK_zUWwGXR7nv3M4",
+    authDomain: "projeto-teste-7dcf3.firebaseapp.com",
+    databaseURL: "https://projeto-teste-7dcf3.firebaseio.com"
+});

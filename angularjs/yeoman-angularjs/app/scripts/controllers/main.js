@@ -2,34 +2,39 @@
 
 /**
  * @ngdoc function
- * @name firebaseAppApp.controller:MainCtrl
+ * @name firebaseApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the firebaseAppApp
+ * Controller of the firebaseApp
  */
-angular.module('firebaseAppApp')
-  .controller('MainCtrl', function ($scope, $timeout) {
+angular.module('firebaseApp')
+  .controller('MainCtrl', function ($scope, $timeout, MessageService) {
     //**Forma antiga de instanciar o objeto firebase
     // var rootRef = new Firebase('https://projeto-teste-7dcf3.firebaseio.com/');
     // var childRef = rootRef.child('message'); */
 
-    var config = {
-      apiKey: "AIzaSyD_RJeXxSxpw7LXZ5RWK_zUWwGXR7nv3M4",
-      authDomain: "projeto-teste-7dcf3.firebaseapp.com",
-      databaseURL: "https://projeto-teste-7dcf3.firebaseio.com"
-    };
+    // var config = {
+    //   apiKey: "AIzaSyD_RJeXxSxpw7LXZ5RWK_zUWwGXR7nv3M4",
+    //   authDomain: "projeto-teste-7dcf3.firebaseapp.com",
+    //   databaseURL: "https://projeto-teste-7dcf3.firebaseio.com"
+    // };
 
-    firebase.initializeApp(config);
+    // firebase.initializeApp(config);
 
-    var rootRef = firebase.database().ref();
-    var messagesRef = rootRef.child('messages');
-    var titleRef = rootRef.child('title');
+    // var rootRef = firebase.database().ref();
+    // var messagesRef = rootRef.child('messages');
+    // var titleRef = rootRef.child('title');
     
     $scope.currentUser = null;
     $scope.currentText = null;
     $scope.messages = [];
     $scope.title = null;
 
+
+    MessageService.childAdded(function(addedChild){
+      console.log(addedChild);
+      
+    })
 
     /** on() function: Listens for data changes at a particular location.
         This is the primary way to read data from a Database. 
@@ -38,36 +43,36 @@ angular.module('firebaseAppApp')
 
     /*child_added*/
     /*traz todos os filhos de 'messages' no snapshot*/    
-    messagesRef.on('child_added', function (snapshot) {
-      $timeout(function () {
-        var snapshotVal = snapshot.val();
-        //console.log(snapshotVal);
-        $scope.messages.push({
-          user: snapshotVal.user,
-          text: snapshotVal.text,
-          key: snapshot.key
-        });
-      });
-    });
+    // messagesRef.on('child_added', function (snapshot) {
+    //   $timeout(function () {
+    //     var snapshotVal = snapshot.val();
+    //     //console.log(snapshotVal);
+    //     $scope.messages.push({
+    //       user: snapshotVal.user,
+    //       text: snapshotVal.text,
+    //       key: snapshot.key
+    //     });
+    //   });
+    // });
 
-    messagesRef.on('child_changed', function (snapshot) {
-      $timeout(function () {
-        var message = findMessageByKey(snapshot.key);
-        var snapshotVal = snapshot.val();
-        message.text = snapshotVal.text;
-      });
-    });
+    // messagesRef.on('child_changed', function (snapshot) {
+    //   $timeout(function () {
+    //     var message = findMessageByKey(snapshot.key);
+    //     var snapshotVal = snapshot.val();
+    //     message.text = snapshotVal.text;
+    //   });
+    // });
 
-    messagesRef.on('child_removed', function (snapshot) {
-      $timeout(function () {
-        deleteMessageByKey(snapshot.key);
-      });
-    });
+    // messagesRef.on('child_removed', function (snapshot) {
+    //   $timeout(function () {
+    //     deleteMessageByKey(snapshot.key);
+    //   });
+    // });
 
-      // recupera o dado da base apenas uma vez, independente se haja ou não alterações
-      titleRef.once('value', function(snapshot) {
-        $scope.title = snapshot.val();
-      })
+    //   // recupera o dado da base apenas uma vez, independente se haja ou não alterações
+    //   titleRef.once('value', function(snapshot) {
+    //     $scope.title = snapshot.val();
+    //   })
 
      $scope.turnFeedOff =  function() {
       messagesRef.off();
