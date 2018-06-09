@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#define N_THREAD 4
+#define N_THREAD 100
 
 void delay()
 {
-    int i, j, k, valor = 1000;
+    int i, j, k, valor = 500;
 
     for (i = 0; i < valor; i++)
     {
