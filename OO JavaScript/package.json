@@ -1,0 +1,24 @@
+{
+  "name": "oo-javascript",
+  "version": "1.0.0",
+  "description": "Object Oriented ES6 JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "JavaScript",
+    "ES6",
+    "Object",
+    "Oriented"
+  ],
+  "author": "merciof",
+  "license": "ISC",
+  "dependencies": {
+    "es6-module-loader": "^0.17.11",
+    "traceur": "0.0.111"
+  },
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}
