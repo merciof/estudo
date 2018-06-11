@@ -14,8 +14,12 @@ export class FleetDataService {
         for (let data of fleet) {
             switch (data.type) {
                 case 'car':
-                    let car = this.loadCar(data);
-                    this.cars.push(car);
+                    if(this.validateCarData(data)) {
+                        let car = this.loadCar(data);
+                        if(car) {
+                            this.cars.push(car);
+                        }
+                    }                   
                     break;
                 case 'drone':
                     let drone = this.loadDrone(data);
@@ -49,5 +53,23 @@ export class FleetDataService {
         d.airTimeHours = drone.airTimeHours;
         d.base = drone.base;
         return d;
+    }
+
+    //valida se os nomes das propriedades dos objetos JSON estão de acordo com os nomes esperados
+    validateCarData(car){
+        let requiredProps = 'license model latLong miles make'.split(' ');
+        let hasErrors = false;
+
+        for(let field of requiredProps){
+            if(!car[field]){
+                this.errors.push(new DataError('Campo ' + field + ' ausente', car))
+                hasErrors = true;
+            }
+        }
+        if(Number.isNaN(Number.parseFloat(car.miles))){
+            this.errors.push(new DataError('Milhas inválidas ' + car.miles, car));
+            hasErrors = true;
+        }
+        return !hasErrors;
     }
 }
