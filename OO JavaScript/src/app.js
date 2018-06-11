@@ -16,3 +16,10 @@ window.console.log(d);
 window.console.log(fleet);
 window.console.log(dataService.cars);
 window.console.log(dataService.drones);
+for (const car of dataService.cars) {
+    window.console.log(car.license);
+}
+
+for (const drone of dataService.drones) {
+    window.console.log(drone.license);
+}
