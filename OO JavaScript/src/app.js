@@ -23,3 +23,7 @@ for (const car of dataService.cars) {
 for (const drone of dataService.drones) {
     window.console.log(drone.license);
 }
+
+for (const error of dataService.errors) {
+    window.console.log(error.message, error.data.type);
+}
