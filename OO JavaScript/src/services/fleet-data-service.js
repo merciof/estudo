@@ -22,8 +22,12 @@ export class FleetDataService {
                     }                   
                     break;
                 case 'drone':
-                    let drone = this.loadDrone(data);
-                    this.drones.push(drone);
+                    if(this.validateDroneData(data)){
+                        let drone = this.loadDrone(data);
+                        if(drone){
+                            this.drones.push(drone);
+                        } 
+                    }     
                     break;
                 default:
                     let e = new DataError('Tipo inválido de veículo.', data);
@@ -41,7 +45,7 @@ export class FleetDataService {
             return c;
         } catch (error) {
             //cria uma instancia de um objeto da classe DataError
-            let e = new DataError('Erro no carregamento do objeto carro.', car);
+            let e = new DataError('Erro na construção do objeto.', car);
             //insere o objeto erro no array 'erros'
             this.errors.push(e);
         }
@@ -49,18 +53,25 @@ export class FleetDataService {
     }
     //instancia um objeto da Classe Drone a partir dos dados do JSON
     loadDrone(drone) {
-        let d = new Drone(drone.license, drone.model, drone.latLong);
-        d.airTimeHours = drone.airTimeHours;
-        d.base = drone.base;
-        return d;
+        try {
+            let d = new Drone(drone.license, drone.model, drone.latLong);
+            d.airTimeHours = drone.airTimeHours;
+            d.base = drone.base;
+            return d;
+        } catch (error) {
+            let e = new DataError('Erro na construção do objeto', drone);
+            this.errors.push(e);
+        }
+        return null;
+        
     }
 
     //valida se os nomes das propriedades dos objetos JSON estão de acordo com os nomes esperados
     validateCarData(car){
-        let requiredProps = 'license model latLong miles make'.split(' ');
+        let requiredProperties = 'license model latLong miles make'.split(' ');
         let hasErrors = false;
 
-        for(let field of requiredProps){
+        for(let field of requiredProperties){
             if(!car[field]){
                 this.errors.push(new DataError('Campo ' + field + ' ausente', car))
                 hasErrors = true;
@@ -69,6 +80,19 @@ export class FleetDataService {
         if(Number.isNaN(Number.parseFloat(car.miles))){
             this.errors.push(new DataError('Milhas inválidas ' + car.miles, car));
             hasErrors = true;
+        }
+        return !hasErrors;
+    } 
+
+    validateDroneData(drone){
+        let requiredProperties = 'license type model airTimeHours base latLong'.split(' ');
+        let hasErrors = false;
+
+        for(let field of requiredProperties){
+            if(!drone[field]){
+                this.errors.push(new DataError('campo requerido ' + field + ' ausente', drone));
+                hasErrors = true;
+            }
         }
         return !hasErrors;
     }
