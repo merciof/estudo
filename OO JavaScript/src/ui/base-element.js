@@ -9,6 +9,7 @@ export class BaseElement {
     appendToElement(el){
         this.createElement();
         el.append(this.element);
+        this.enableJS();
     }
 
     createElement() {
@@ -18,5 +19,10 @@ export class BaseElement {
 
     getElementString(){
         throw 'Por favor, sobrescreva a função getElementString() de BaseElement.';
+    }
+
+    enableJS(){
+        //atualiza elemento específico do DOM
+        componentHandler.upgradeElement(this.element[0]);
     }
 }
