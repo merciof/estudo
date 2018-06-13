@@ -1,4 +1,4 @@
-import { BaseElement } from "./base-element";
+import { BaseElement } from "./base-element.js";
 
 export class Button extends BaseElement{
     constructor(title){
