@@ -2,11 +2,16 @@
 #include <stdlib.h>
 #include <pthread.h>
 
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define RESET   "\033[0m"
+#define BOLDWHITE   "\033[1m\033[37m"
+
 int cont = 0, turn = 0;
 
 void delay()
 {
-    int i, j, k, valor = 100;
+    int i, j, k, valor = 1000;
 
     for (i = 0; i < valor; i++)
     {
@@ -24,47 +29,63 @@ void *processo_zero(void *arg)
 {
     int cont_zero = 0;
     
-    while (cont_zero < 10)
+    printf("Thread 0 criada\n");
+
+    while (cont_zero < 1)
     { 
         //espera até seja o turno seja igual a 0
         while (turn != 0) {}
 
         //região crítica
+        printf("\n");
+        printf("********** Executando " RED "SEÇÂO CRÌTICA" RESET " da Thread "BOLDWHITE "ZERO *********** \n" RESET);
+        printf("\n");
         cont = cont + 1;
-
-        printf("Processo 0 executando seção crítica, cont = %i \n", cont);
+        printf("Variável compartilhada acrescida de uma unidade: cont = %d\n", cont);
+        printf("\n");
+        printf("**************************************************************\n");
         delay();
+
+        printf("\n");
+        printf("Turno setado para 1\n");
         
         turn = 1;
-        printf("***************Turno alterado para %i************ \n", turn);
-        printf("Processo 0 executando seção Não crítica \n");
+        printf("\n");
+        printf("Executando a " GREEN "seção não crítica" RESET " da thread " BOLDWHITE "ZERO \n" RESET);
+        printf("\n");
         cont_zero += 1;
         delay();
-
     }
 }
 
 void *processo_um(void *arg)
 {
     int cont_um = 0;
-    
-    while (cont_um < 10)
+    while (cont_um < 1)
     {
         //espera até seja o turno seja igual a 0
         while (turn != 1) {}
-
+        
+        printf("\n");
+        printf("********** Executando " RED "SEÇÂO CRÌTICA" RESET " da Thread "BOLDWHITE "UM *********** \n" RESET);
         //região crítica
         cont = cont + 1;
-
-        printf("Processo 1 executando seção crítica, cont = %i \n", cont);
-        delay();
+        printf("\n"); 
+        printf("Variável compartilhada acrescida de uma unidade: cont = %d\n", cont);
+        printf("\n");
+        printf("************************************************************\n");
+        
+        printf("\n");
+        printf("Turno setado para 0\n");
+        
         turn = 0;
-        printf("***************Turno alterado para %i************ \n", turn);
-        printf("Processo 1 executando seção Não crítica\n");
+        
+        delay();
+        printf("\n");
+        printf("Executando a " GREEN "seção não crítica" RESET " da thread " BOLDWHITE "UM \ns" RESET);
+        printf("\n");
         cont_um += 1;
         delay();
-
-        
     }
 }
 
