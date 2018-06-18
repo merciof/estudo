@@ -6,6 +6,7 @@ import { FleetDataService } from "./services/fleet-data-service.js";
 import { Button } from "./ui/button.js";
 import { Image } from "./ui/image.js";
 import { TitleBar } from "./ui/title-bar.js";
+import { DataTable } from "./ui/data-table.js";
 
 
 
@@ -28,13 +29,19 @@ import { TitleBar } from "./ui/title-bar.js";
 //     window.console.log(error.message);
 // }
 
-let tb = new TitleBar('Our application');
-tb.addLink('Home', '');
-tb.addLink('Cars', '');
-tb.addLink('Drones', '');
-tb.addLink('Maps', '');
-tb.appendToElement($('body'));
-window.console.log(tb);
+// let tb = new TitleBar('Our application');
+// tb.addLink('Home', '');
+// tb.addLink('Cars', '');
+// tb.addLink('Drones', '');
+// tb.addLink('Maps', '');
+// tb.appendToElement($('body'));
+// window.console.log(tb);
+
+let headers = 'License Make Model Miles'.split(' ');
+let dataService = new FleetDataService();
+dataService.loadData(fleet);
+let dt = new DataTable(headers, dataService.cars);
+dt.appendToElement($('body'));
 
 
 
