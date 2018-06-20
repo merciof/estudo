@@ -20,8 +20,11 @@ Referência: Fundamentos de Sistemas Operacionais, Silberschatz */
 int contador = 0; 
 
 //variável global usada para sinalizar o turno corrente
+//turno é inicializado como 0
+//permitindo a execução da thread 0
 int turno = 0;
 
+//função usada para criar um delay de alguns segundos
 void delay()
 {
     int i, j, k, valor = 1000;
@@ -40,6 +43,7 @@ void delay()
 
 void *processo_zero(void *arg)
 {
+    //contador para tornar finito o numero de execução da thread
     int contador_thread_zero = 0;
 
     while (contador_thread_zero < 5)
@@ -60,7 +64,6 @@ void *processo_zero(void *arg)
         
         turno = 1;
         
-
         printf("\n");
         printf("Executando a " GREEN "seção não crítica" RESET " da thread " BOLDWHITE "ZERO \n" RESET);
         printf("\n");
@@ -72,6 +75,7 @@ void *processo_zero(void *arg)
 void *processo_um(void *arg)
 {
     int contador_thread_um = 0;
+
     while (contador_thread_um < 5)
     {
         //espera até seja o turnoo seja igual a 0
@@ -130,6 +134,7 @@ void *processo_dois(void *arg)
 void *processo_tres(void *arg)
 {
     int contador_thread_um = 0;
+
     while (contador_thread_um < 5)
     {
         //espera até seja o turnoo seja igual a 0
@@ -159,6 +164,7 @@ void *processo_tres(void *arg)
 void *processo_quatro(void *arg)
 {
     int contador_thread_um = 0;
+
     while (contador_thread_um < 5)
     {
         //espera até seja o turnoo seja igual a 0
@@ -188,14 +194,14 @@ void *processo_quatro(void *arg)
 int main()
 {   
     pthread_t threads[4];
-    int arg[1], x;
+    int arg[4], x;
 
     //função da biblioteca pthreads para a criação de threads
     pthread_create(&threads[0], NULL, processo_zero, (void *)&arg[0]);
     pthread_create(&threads[1], NULL, processo_um, (void *)&arg[1]);
-    pthread_create(&threads[2], NULL, processo_dois, (void *)&arg[0]);
-    pthread_create(&threads[3], NULL, processo_tres, (void *)&arg[1]);
-    pthread_create(&threads[4], NULL, processo_quatro, (void *)&arg[1]);
+    pthread_create(&threads[2], NULL, processo_dois, (void *)&arg[2]);
+    pthread_create(&threads[3], NULL, processo_tres, (void *)&arg[3]);
+    pthread_create(&threads[4], NULL, processo_quatro, (void *)&arg[4]);
 
     //suspende a execução desta thread principal até que estas outras terminem
     pthread_join(threads[0], NULL);
@@ -205,6 +211,5 @@ int main()
     pthread_join(threads[4], NULL);
 
     scanf("%d",&x);
-    printf("\n");
     return 0;
 }
