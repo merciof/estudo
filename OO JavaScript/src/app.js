@@ -11,7 +11,10 @@ export class App extends ApplicationBase {
     }
 }
 
+//bootstrapping Objeto base 'application' usado para a criação de outros objetos
 export let application = new App();
+
+application.show($('body'));
 
 
 

@@ -2,7 +2,7 @@ import  $  from "jquery";
 
 export class BaseElement {
     constructor() {
-        //JQery Object
+        //JQuery Object
         this.element = null;
     }
 
@@ -13,7 +13,7 @@ export class BaseElement {
     }
 
     createElement() {
-        let s = this.getElementString(s);
+        let s = this.getElementString();
         this.element = $(s);
     }
 
