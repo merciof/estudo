@@ -6,6 +6,7 @@ export class ApplicationBase {
         this.title = title;
         this.titleBar = new TitleBar(this.title);
         this.routeMap = {};
+        this.defaultRoute = null;
     }
 
     show(element) {
