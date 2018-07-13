@@ -1,0 +1,25 @@
+{
+  "name": "linked-list-file-system",
+  "version": "1.0.0",
+  "description": "linked list file system mini simulator",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server"
+  },
+  "keywords": [
+    "javascript",
+    "linked",
+    "list"
+  ],
+  "author": "merciof",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.4.0"
+  },
+  "dependencies": {
+    "es-module-loader": "^2.3.0",
+    "systemjs": "^0.21.4",
+    "systemjs-plugin-babel": "0.0.25"
+  }
+}
