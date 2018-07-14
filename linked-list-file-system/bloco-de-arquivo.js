@@ -1,6 +1,6 @@
 export class Bloco {
-    constructor(ponteiro, dado) {
-        this.ponteiro = ponteiro;
+    constructor(dado, ponteiro) {
         this.dado = dado;
+        this.ponteiro = ponteiro;      
     }
 }
