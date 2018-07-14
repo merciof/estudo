@@ -1,6 +1,6 @@
- import { ListaEncadeada  } from "./lista-encadeada-de-blocos.js";
+ import { ListaEncadeada  } from "./classes/lista-encadeada-de-blocos.js";
 
-let ll = new ListaEncadeada();
+let ll = new ListaEncadeada('arquivo0');
 ll.adicionarBloco('dado1');
 console.log(ll.head);
 ll.adicionarBloco('dado2');
