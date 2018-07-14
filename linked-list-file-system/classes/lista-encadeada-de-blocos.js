@@ -2,11 +2,12 @@ import { Bloco } from "./bloco-de-arquivo.js";
 
 //Esta classe representa um arquivo estruturado numa lista encadeada
 export class ListaEncadeada {
-    constructor(nomeArquivo, dataCriacao) {
+    constructor(nomeArquivo, dataCriacao, protegido) {
         this.head = null;
         this.tail = null;
-        this.nomnomeeArquivo = nomeArquivo;
+        this.nomeArquivo = nomeArquivo;
         this.dataCriacao = dataCriacao;
+        this.protegido = protegido;
     }
 
     adicionarBloco(dado){
