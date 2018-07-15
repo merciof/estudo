@@ -11,7 +11,7 @@ console.log(ll.head.ponteiro.ponteiro);
 ll.adicionarBloco('dado4');
 console.log(ll.head.ponteiro.ponteiro.ponteiro);
 
-window.document.body.innerHTML = ll.dataCriacao;
+
 
 
 
