@@ -1,15 +1,20 @@
- import { ListaEncadeada  } from "./classes/lista-encadeada-de-blocos.js";
+ import { Arquivo  } from "./classes/arquivo.js";
 
-let d = new Date(); 
-let ll = new ListaEncadeada('arquivo0', d);
-ll.adicionarBloco('dado1');
-console.log(ll.head);
-ll.adicionarBloco('dado2');
-console.log(ll.head.ponteiro);
-ll.adicionarBloco('dado3');
-console.log(ll.head.ponteiro.ponteiro);
-ll.adicionarBloco('dado4');
-console.log(ll.head.ponteiro.ponteiro.ponteiro);
+let dataCriacao = new Date(); 
+
+//criação de um arquivo
+//atributos: nome, data de criação, protegido ou não
+let a = new Arquivo('arquivo0', dataCriacao, 0);
+
+
+a.adicionarBloco('dado1');
+console.log(a.head);
+a.adicionarBloco('dado2');
+console.log(a.head.ponteiro);
+a.adicionarBloco('dado3');
+console.log(a.head.ponteiro.ponteiro);
+a.adicionarBloco('dado4');
+console.log(a.head.ponteiro.ponteiro.ponteiro);
 
 
 
