@@ -2,12 +2,12 @@ import { Bloco } from "./bloco.js";
 
 //Esta classe representa um arquivo estruturado numa lista escadeada
 export class Arquivo {
-    constructor(nomeArquivo, dataCriacao, protegido) {
+    constructor(nome, dataCriacao, protegido) {
         //head e tail da lista escadeada
         this.head = null;
         this.tail = null;
         //atributos do arquivo
-        this.nomeArquivo = nomeArquivo;
+        this.nome = nome;
         this.dataCriacao = dataCriacao;
         this.protegido = protegido;
     }
@@ -23,5 +23,25 @@ export class Arquivo {
             this.head = novoBloco;
             this.tail = novoBloco;
         }  
+    }
+
+    //método que percorre a lista encadeada e retorna o conteudo do arquivo
+    exibirArquivo(){
+        let noAtual = this.head;
+        let dados = '';
+        
+        if(noAtual === null) {
+            window.console.log('arquivo vazio');
+        } else {
+            while(noAtual){
+                dados+=noAtual.dado;
+                noAtual = noAtual.ponteiro;
+            } 
+        }
+        return dados;    
+    }
+
+    deletar(){
+        
     }
 }
