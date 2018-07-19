@@ -13,6 +13,13 @@ export class Arquivo {
         this.dado = dado;
     }
 
+    exibirAtributos(){
+        window.console.log('Atributos do arquivo: \n');
+        window.console.log('Nome: ' + this.nome);
+        window.console.log('Data de criação: ' + this.dataCriacao);
+        window.console.log('Protegido: ' + this.protegido);
+    }
+
     //aloca os dados inseridos na entrada, um bit por bloco 
     alocarBlocos(){
         let i = 0;
@@ -73,11 +80,16 @@ export class Arquivo {
         }
     }
 
-    renomearArquivo(){
-
+    renomearArquivo(novoNome){
+        this.nome = novoNome;
     }
 
-    deletar(){
-        
-    }
+    // deletarArquivo(){
+    //     if(this.protegido === 1) {
+    //         window.console.log('Impossível deletar. Arquivo protegido');
+    //     } else {
+    //         this.head = null;
+    //         this.tail = null;
+    //     }
+    // }
 }
