@@ -4,4 +4,8 @@ export class Diretorio {
     constructor(){
         this.arquivos = [];
     }
+
+    listarArquivos(){
+        
+    }
 }

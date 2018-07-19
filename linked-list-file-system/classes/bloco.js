@@ -1,7 +1,7 @@
 //esta classe representa um bloco de arquivo no disco
 export class Bloco {
-    constructor(dado, ponteiro) {
-        this.dado = dado;
+    constructor(bit, ponteiro) {
+        this.bit = bit;
         this.ponteiro = ponteiro;      
     }
 }
