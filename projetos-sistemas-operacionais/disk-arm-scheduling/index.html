@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="modulo-1">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <script src="angular/angular.js"></script>
+    <script src="angular/modulos/modulo-1.js"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     -->
+</head>
+
+<body id="corpo">
+
+    <!-- <div class="row">
+        <canvas id="meuCanvas" style="border: 1px solid black;"></canvas>
+    </div> -->
+
+    <div class="container" ng-controller="controlador_1">
+        <div class="row ">
+            <div class="col-sm">
+                <br>
+                <label for="posicao">Posição inicial do braço: </label>
+                <input type="text" id="posicao" placeholder="Posicao inicial do braço" ng-model="posicao_inicial_braco">
+            </div>
+        </div>
+            
+            <div class="row">
+                <div class="col-sm">
+                        <label for="cilindrosInput">Cilindros para requisição:</label>
+                        <input type="text" id="cilindrosInput" placeholder="Cilindros" ng-model="input_model" ng-change="input()">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm">
+                        <br>
+                        <input type="checkbox" name="" id=""> Começar descendo. 
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                        <br>
+                        <button ng-click="scan()" class="btn btn-primary">SCAN</button>
+                </div>  
+            </div>
+       
+
+
+    </div>
+
+
+    <!-- <script src="main.js"></script> -->
+</body>
+
+</html>
