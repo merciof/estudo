@@ -4,7 +4,6 @@ myApp.controller('controlador_1', controlador_1);
 
 function controlador_1($scope) {
 
-
     $scope.scan = function scan() {
 
         var aux = $scope.input_model.split(',');
@@ -33,6 +32,7 @@ function controlador_1($scope) {
                 if (cilindro[j] === 1) {
                     cilindro[j] = 0;
                     window.console.log('Lendo cilindro: ' + j);
+                    $scope.output = j;
                     $scope.esperar(1000);
     
                 }
@@ -42,7 +42,6 @@ function controlador_1($scope) {
             $scope.esperar(1000);
             window.console.log('Mudando de direção para DESCER.');
             $scope.esperar(1000);
-            $scope.posicao_inicial = true;
     
             //volta a partir da posição da última requisição
             for (var k = j - 1; k > -1; k--) {
@@ -53,11 +52,36 @@ function controlador_1($scope) {
                 }
             }
             window.console.log('Braço sobre o cilindro ' + (k + 1));
-        } else {
-
-        }
-
         
+        } else {
+            //comecar descendo
+            window.console.log('Posicao inicial: DESCENDO');
+            $scope.esperar(1000);
+
+            for (var k = $scope.posicao_inicial_braco; k > -1; k--) {
+                if (cilindro[k] === 1) {
+                    cilindro[k] = 0;
+                    window.console.log('Lendo cilindro ' + k);
+                    $scope.esperar(1000);
+                }
+            }
+            window.console.log('Braço sobre o cilindro ' + (k + 1));
+            $scope.esperar(1000);
+            window.console.log('Mudando de direção para SUBIR.');
+            $scope.esperar(1000);
+
+            for (var j = k + 1; j < 40; j++) {
+                if (cilindro[j] === 1) {
+                    cilindro[j] = 0;
+                    window.console.log('Lendo cilindro: ' + j);
+                    $scope.output = j;
+                    $scope.esperar(1000);
+    
+                }
+            }
+
+            window.console.log('Braço sobre o cilindro ' + j);
+        }
 
     }
 
@@ -82,6 +106,9 @@ function controlador_1($scope) {
         $scope.esperar(1000);
         
         if (!$scope.direcao_inicial) {
+
+            window.console.log('Posicao inicial: SUBINDO');
+            $scope.esperar(1000);
 
             for (var j = $scope.posicao_inicial_braco; j < 40; j++) {
                 if (cilindro[j] === 1) {
@@ -118,6 +145,25 @@ function controlador_1($scope) {
 
             window.console.log('Braço sobre o cilindro ' + j);
 
+        } else {
+            window.console.log('Posicao inicial: DESCENDO');
+            $scope.esperar(1000);
+
+            var j = 0;
+
+            window.console.log('Braço sobre o cilindro ' + j);
+            $scope.esperar(1000);
+
+            for (j; j < 40; j++) {
+                if (cilindro[j] === 1) {
+                    cilindro[j] = 0;
+                    window.console.log('Lendo cilindro: ' + j);
+                    $scope.esperar(1000);
+
+                }
+            }
+
+            window.console.log('Braço sobre o cilindro ' + j);
         }
     };
 
