@@ -1,5 +1,3 @@
-package test;
-
 
 import static org.junit.Assert.*;
 
@@ -18,7 +16,7 @@ public class TestadorAutoridade {
 	Autoridade _autoridade;
 	
 	@Before
-	public void criarcaoAutoridade() {
+	public void criacaoAutoridade() {
 		_autoridade = new Autoridade();
 		_autoridade._nome = "Fulano";
 		_autoridade._sobrenome = "de Tal";
