@@ -20,10 +20,24 @@ public class CaixaEletronicoTesteDeUnidade {
 		
 	}
 	
+	@Test
+	public void testLogar() {
+		assertEquals("retorno logar", caixaEletronico.logar());
+	}
 	
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testSacar() {
+		assertEquals("retorno sacar", caixaEletronico.sacar());
+	}
+	
+	@Test
+	public void testDepositar() {
+		assertEquals("retorno depositar", caixaEletronico.depositar());
+	}
+	
+	@Test
+	public void testSaldo() {
+		assertEquals("retorno saldo", caixaEletronico.saldo());
 	}
 
 }
