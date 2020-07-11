@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import caixaEletronico.CaixaEletronico;
+import caixaEletronico.ContaCorrente;
 
 public class CaixaEletronicoTesteDeUnidade {
 
@@ -17,12 +18,13 @@ public class CaixaEletronicoTesteDeUnidade {
 	public void criacaoDeObjetos() {
 		this.caixaEletronico = new CaixaEletronico();
 		this.contaCorrente = new ContaCorrente();
-		
 	}
 	
 	@Test
 	public void testLogar() {
-		assertEquals("retorno logar", caixaEletronico.logar());
+		contaCorrente.login = "usuario";
+		contaCorrente.senha = "senha";
+		assertEquals("Usuário Autenticado", caixaEletronico.logar(contaCorrente, "usuario", "senha"));
 	}
 	
 	@Test
