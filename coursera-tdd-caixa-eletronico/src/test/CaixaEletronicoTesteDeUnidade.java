@@ -7,46 +7,59 @@ import org.junit.Test;
 
 import caixaEletronico.CaixaEletronico;
 import caixaEletronico.ContaCorrente;
+import caixaEletronico.MockServicoRemoto;
 
 public class CaixaEletronicoTesteDeUnidade {
 
 	
-	CaixaEletronico caixaEletronico;
-	ContaCorrente contaCorrente;
+	CaixaEletronico _caixaEletronico;
+	ContaCorrente _contaCorrente;
+	MockServicoRemoto _mockServicoRemoto;
 	
 	@Before
 	public void criacaoDeObjetos() {
-		this.caixaEletronico = new CaixaEletronico();
-		this.contaCorrente = new ContaCorrente();
+		_caixaEletronico = new CaixaEletronico();
+		_contaCorrente = new ContaCorrente();
+		_contaCorrente.numero = 1;
+		_contaCorrente.login = "login";
+		_contaCorrente.senha = "senha";
+		_mockServicoRemoto = MockServicoRemoto.getInstance();
+		_mockServicoRemoto._listaDeContas.put(_contaCorrente.numero, _contaCorrente);
 	}
 	
 	@Test
-	public void testLogar() {
-		contaCorrente.login = "usuario";
-		contaCorrente.senha = "senha";
-		assertEquals("Usuário Autenticado", caixaEletronico.logar(contaCorrente, "usuario", "senha"));
+	public void testLogarComSucesso() {
+		
+		assertEquals("Usuário Autenticado", _caixaEletronico.logar(_contaCorrente, "login", "senha"));
+	}
+	
+	@Test
+	public void testLogarFalha() {
+		
+		assertEquals("Não foi possível autenticar o usuário", _caixaEletronico.logar(_contaCorrente, "usu", "123"));
 	}
 	
 	@Test
 	public void testSacar() {
-		contaCorrente.setSaldo(500);
-		assertEquals("Retire seu dinheiro", caixaEletronico.sacar(contaCorrente, 100));
+		_contaCorrente.setSaldo(500);
+		assertEquals("Retire seu dinheiro", _caixaEletronico.sacar(_contaCorrente, 100));
 	}
 	
 	@Test
 	public void testSacarSaldoInsuficiente() {
-		contaCorrente.setSaldo(50);
-		assertEquals("Saldo insuficiente", caixaEletronico.sacar(contaCorrente, 100));
+		_contaCorrente.setSaldo(50);
+		assertEquals("Saldo insuficiente", _caixaEletronico.sacar(_contaCorrente, 100));
 	}
 	
 	@Test
 	public void testDepositar() {
-		assertEquals("retorno depositar", caixaEletronico.depositar());
+		assertEquals("Depósito recebido com sucesso", _caixaEletronico.depositar(_contaCorrente, 50));
+		assertEquals(50, _contaCorrente.getSaldo(), 1);
 	}
 	
 	@Test
 	public void testSaldo() {
-		assertEquals("retorno saldo", caixaEletronico.saldo());
+		//assertEquals("retorno saldo", _caixaEletronico.saldo());
 	}
 
 }
