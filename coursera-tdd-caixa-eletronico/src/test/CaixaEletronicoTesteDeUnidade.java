@@ -29,7 +29,14 @@ public class CaixaEletronicoTesteDeUnidade {
 	
 	@Test
 	public void testSacar() {
-		assertEquals("retorno sacar", caixaEletronico.sacar());
+		contaCorrente.setSaldo(500);
+		assertEquals("Retire seu dinheiro", caixaEletronico.sacar(contaCorrente, 100));
+	}
+	
+	@Test
+	public void testSacarSaldoInsuficiente() {
+		contaCorrente.setSaldo(50);
+		assertEquals("Saldo insuficiente", caixaEletronico.sacar(contaCorrente, 100));
 	}
 	
 	@Test
