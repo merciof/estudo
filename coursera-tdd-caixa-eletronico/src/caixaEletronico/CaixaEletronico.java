@@ -59,12 +59,20 @@ public class CaixaEletronico {
 			return "Retire seu dinheiro";
 		}
 		
-		contaCorrente.setSaldo(contaCorrente.getSaldo() + valor);
-		return "Depósito recebido com sucesso";
+		return "Usuário não logado";
 	}
 
 	public Object saldo(ContaCorrente contaCorrente) {
-		return "O saldo é R$" + contaCorrente.getSaldo();
+		
+		if (_autenticado) {
+			
+			float saldo = _mockServicoRemoto.recuperarConta(contaCorrente.numero).getSaldo();
+			return "O saldo é R$" + saldo;
+		}
+		
+		return "Usuário não logado";
+		
+		
 	}
 
 }
