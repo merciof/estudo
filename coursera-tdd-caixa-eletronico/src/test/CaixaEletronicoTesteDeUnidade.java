@@ -55,7 +55,8 @@ public class CaixaEletronicoTesteDeUnidade {
 	
 	@Test
 	public void testDepositar() {
-		assertEquals("Depósito recebido com sucesso", _caixaEletronico.depositar(_contaCorrente, 50));
+		_caixaEletronico.logar(_contaCorrente, "login", "senha");
+		assertEquals("Retire seu dinheiro", _caixaEletronico.depositar(_contaCorrente, 50));
 		assertEquals(50, _contaCorrente.getSaldo(), 1);
 	}
 	
