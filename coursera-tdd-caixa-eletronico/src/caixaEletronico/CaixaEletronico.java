@@ -33,15 +33,32 @@ public class CaixaEletronico {
 			if(_mockServicoRemoto.recuperarConta(contaCorrente.numero).getSaldo() < valor)
 				return "Saldo insuficiente";
 			
+			float saldo = _mockServicoRemoto.recuperarConta(contaCorrente.numero).getSaldo();
+			
+			_mockServicoRemoto.recuperarConta(contaCorrente.numero).setSaldo(saldo - valor);
+			
+			_mockServicoRemoto.persistirConta(contaCorrente);
+			
 			return "Retire seu dinheiro";
 		}
 		
 		return "Usuário não logado";
 		
-		
 	}
 
 	public String depositar(ContaCorrente contaCorrente, float valor) {
+		
+		if (_autenticado) {
+			
+			float saldo = _mockServicoRemoto.recuperarConta(contaCorrente.numero).getSaldo();
+			
+			_mockServicoRemoto.recuperarConta(contaCorrente.numero).setSaldo(saldo + valor);
+			
+			_mockServicoRemoto.persistirConta(contaCorrente);
+			
+			return "Retire seu dinheiro";
+		}
+		
 		contaCorrente.setSaldo(contaCorrente.getSaldo() + valor);
 		return "Depósito recebido com sucesso";
 	}
