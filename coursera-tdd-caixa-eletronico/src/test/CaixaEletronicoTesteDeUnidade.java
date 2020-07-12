@@ -41,12 +41,14 @@ public class CaixaEletronicoTesteDeUnidade {
 	
 	@Test
 	public void testSacar() {
+		_caixaEletronico.logar(_contaCorrente, "login", "senha");
 		_contaCorrente.setSaldo(500);
 		assertEquals("Retire seu dinheiro", _caixaEletronico.sacar(_contaCorrente, 100));
 	}
 	
 	@Test
 	public void testSacarSaldoInsuficiente() {
+		_caixaEletronico.logar(_contaCorrente, "login", "senha");
 		_contaCorrente.setSaldo(50);
 		assertEquals("Saldo insuficiente", _caixaEletronico.sacar(_contaCorrente, 100));
 	}
