@@ -20,11 +20,12 @@ public class CaixaEletronicoTesteDeUnidade {
 	public void criacaoDeObjetos() {
 		_caixaEletronico = new CaixaEletronico();
 		_contaCorrente = new ContaCorrente();
-		_contaCorrente.numero = 1;
-		_contaCorrente.login = "login";
-		_contaCorrente.senha = "senha";
 		_mockServicoRemoto = MockServicoRemoto.getInstance();
-		_mockServicoRemoto._listaDeContas.put(_contaCorrente.numero, _contaCorrente);
+		_mockServicoRemoto._listaDeContas.put(1, _contaCorrente);
+		_mockServicoRemoto.recuperarConta(1).numero = 1;
+		_mockServicoRemoto.recuperarConta(1).login = "login";
+		_mockServicoRemoto.recuperarConta(1).senha = "senha";
+		
 	}
 	
 	@Test
@@ -42,14 +43,14 @@ public class CaixaEletronicoTesteDeUnidade {
 	@Test
 	public void testSacar() {
 		_caixaEletronico.logar(_contaCorrente, "login", "senha");
-		_contaCorrente.setSaldo(500);
+		_mockServicoRemoto.recuperarConta(_contaCorrente.numero).setSaldo(500);
 		assertEquals("Retire seu dinheiro", _caixaEletronico.sacar(_contaCorrente, 100));
 	}
 	
 	@Test
 	public void testSacarSaldoInsuficiente() {
 		_caixaEletronico.logar(_contaCorrente, "login", "senha");
-		_contaCorrente.setSaldo(50);
+		_mockServicoRemoto.recuperarConta(_contaCorrente.numero).setSaldo(50);
 		assertEquals("Saldo insuficiente", _caixaEletronico.sacar(_contaCorrente, 100));
 	}
 	
@@ -57,12 +58,13 @@ public class CaixaEletronicoTesteDeUnidade {
 	public void testDepositar() {
 		_caixaEletronico.logar(_contaCorrente, "login", "senha");
 		assertEquals("Retire seu dinheiro", _caixaEletronico.depositar(_contaCorrente, 50));
-		assertEquals(50, _contaCorrente.getSaldo(), 1);
+		assertEquals(50, _mockServicoRemoto.recuperarConta(_contaCorrente.numero).getSaldo(), 1);
 	}
 	
 	@Test
 	public void testSaldo() {
-		//assertEquals("retorno saldo", _caixaEletronico.saldo());
+		_caixaEletronico.logar(_contaCorrente, "login", "senha");
+		assertEquals("O saldo é R$0.0", _caixaEletronico.saldo(_contaCorrente));
 	}
 
 }
