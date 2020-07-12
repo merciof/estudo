@@ -4,17 +4,20 @@ package caixaEletronico;
 
 public class CaixaEletronico {
 	
-	MockServicoRemoto _mockServicoRemoto = MockServicoRemoto.getInstance();
+	MockServicoRemoto _mockServicoRemoto;
+	boolean _autenticado;
 	
-//	public CaixaEletronico() {
-//		super();
-//		_mockServicoRemoto = new MockServicoRemoto();
-//	}
+	public CaixaEletronico() {
+		super();
+		_mockServicoRemoto = MockServicoRemoto.getInstance();
+		_autenticado = false;
+	}
 
 	public String logar(ContaCorrente contaCorrente, String login, String senha) {
 		
 		if (_mockServicoRemoto.recuperarConta(contaCorrente.numero).login == login
 					&& _mockServicoRemoto.recuperarConta(contaCorrente.numero).senha  == senha) {
+				_autenticado = true;
 				return "Usuário Autenticado";
 			}
 		
@@ -24,10 +27,18 @@ public class CaixaEletronico {
 	}
 
 	public String sacar(ContaCorrente contaCorrente, float valor) {
-		if(contaCorrente.getSaldo() < valor)
-			return "Saldo insuficiente";
 		
-		return "Retire seu dinheiro";
+		if (_autenticado) {
+			
+			if(_mockServicoRemoto.recuperarConta(contaCorrente.numero).getSaldo() < valor)
+				return "Saldo insuficiente";
+			
+			return "Retire seu dinheiro";
+		}
+		
+		return "Usuário não logado";
+		
+		
 	}
 
 	public String depositar(ContaCorrente contaCorrente, float valor) {
