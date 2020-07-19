@@ -4,5 +4,17 @@ package pacote;
 //palavra ou não, se o usuário pode tentar acertar a palavra novamente e qual foi a pontuação final
 //do jogador. Pelo menos duas implementações dessa interface devem ser criadas.
 public interface IMecanicaDoJogo {
+	
+
+	int somarPonto();
+	
+	int removerTentativa();
+	
+	int get_pontuacaoDoJogador();
+	
+	boolean fimDoJogo();
+	
+	boolean veriricarTentativa(String stringDoBancoDePalavras, String stringDigitadaPeloJogador);
+
 
 }
