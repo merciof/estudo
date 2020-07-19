@@ -10,18 +10,15 @@ import java.util.Random;
 public class BancoDePalavras {
 	
 
-	private static List<String> lines = null;
+	private List<String> lines = null;
 	
 	private Random rand;
 	
-
 	public BancoDePalavras() {
 		super();
 		rand = new Random();
-	}
-
-	static {
-	    try {
+		
+		try {
 	        lines = Files.readAllLines(new File("banco-de-palavras.txt").toPath());
 	    } catch (IOException e) {
 	        e.printStackTrace();
