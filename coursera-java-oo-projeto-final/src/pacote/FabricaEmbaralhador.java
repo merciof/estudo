@@ -22,8 +22,8 @@ public class FabricaEmbaralhador {
 		gerarAleatoriedade();
 		
 		if(valorUm > valorDois)
-			return new EmbaralhadorUm();
+			return new EmbaralhadorRandomico();
 		else
-			return new EmbaralhadorUm();
+			return new EmbaralhadorInversor();
 	}
 }
