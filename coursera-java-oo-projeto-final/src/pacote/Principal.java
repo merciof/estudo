@@ -23,6 +23,7 @@ public class Principal {
 		
 		IEmbaralhador embaralhador = FabricaEmbaralhador.getInstance();
 		
+		
 		Scanner scanner = new Scanner(System.in);
 		
 		
@@ -34,7 +35,7 @@ public class Principal {
 			
 			stringEmbaralhada = embaralhador.embaralhar(stringDoBancoDePalavras);
 	    	
-	    	System.out.println(stringDoBancoDePalavras);
+	    	//System.out.println(stringDoBancoDePalavras);
 	    	System.out.println(stringEmbaralhada);
 	    	System.out.print("Qual é a palavra: ");
 		    String stringDigitadaPeloJogador = scanner.nextLine(); 
