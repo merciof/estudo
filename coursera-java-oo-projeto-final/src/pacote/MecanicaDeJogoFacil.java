@@ -11,8 +11,8 @@ public class MecanicaDeJogoFacil implements IMecanicaDoJogo {
 
 	public MecanicaDeJogoFacil() {
 		super();
-		_numeroMaximoDeTentativas = 2;
-		_pontuacaoPorAcerto = 1;
+		_numeroMaximoDeTentativas = 3;
+		_pontuacaoPorAcerto = 20;
 		_pontuacaoDoJogador = 0;
 	}
 	
